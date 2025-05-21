@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}Detalii Tranzacție{% endblock %}
+
+{% block content %}
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+  <div class="card shadow border-0 rounded-4 p-4 animate__animated animate__fadeIn" style="max-width: 600px; width: 100%;">
+    <div class="text-center mb-4">
+      <h2 class="fw-bold">Detalii Tranzacție</h2>
+      <p class="text-muted">Informații complete despre tranzacție.</p>
+    </div>
+
+    <div class="bg-light rounded-3 p-3 mb-4">
+      <p><strong>Suma:</strong> {{ transaction.amount }} RON</p>
+      <p><strong>Categoria:</strong> {{ transaction.category.name }}</p>
+      <p><strong>Tip:</strong> {{ transaction.category.is_income|yesno:"Venit,Cheltuială" }}</p>
+      <p><strong>Data:</strong> {{ transaction.date }}</p>
+      {% if transaction.description %}
+      <p><strong>Descriere:</strong> {{ transaction.description }}</p>
+      {% endif %}
+    </div>
+
+    <div class="text-center">
+      <a href="{% url 'transaction_update' transaction.pk %}" class="btn btn-warning me-2">Editează</a>
+      <a href="{% url 'transaction_delete' transaction.pk %}" class="btn btn-danger me-2">Șterge</a>
+      <a href="{% url 'transaction_list' %}" class="btn btn-secondary">Înapoi la listă</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

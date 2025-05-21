@@ -1,0 +1,1 @@
+parola= 'fryv rqrz tuhb sjha'

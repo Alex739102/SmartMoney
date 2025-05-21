@@ -1,0 +1,64 @@
+{% load static %}
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #6f42c1;">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{% url 'home' %}">Money Manager</a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain" aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarMain">
+      {% if user.is_authenticated %}
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{% url 'dashboard' %}">Dashboard</a>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="categoriesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Categories
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="categoriesDropdown">
+              <li><a class="dropdown-item" href="{% url 'category_list' %}">View Categories</a></li>
+              <li><a class="dropdown-item" href="{% url 'category_create' %}">Add Category</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="transactionsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Transactions
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="transactionsDropdown">
+              <li><a class="dropdown-item" href="{% url 'transaction_list' %}">View Transactions</a></li>
+              <li><a class="dropdown-item" href="{% url 'transaction_create' %}">Add Transaction</a></li>
+            </ul>
+          </li>
+        </ul>
+      {% else %}
+        <span class="navbar-text text-white me-auto">
+          Te rugăm să te conectezi pentru a accesa funcționalitățile aplicației.
+        </span>
+      {% endif %}
+
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        {% if user.is_authenticated %}
+          <li class="nav-item">
+            <form method="post" action="{% url 'logout' %}" style="display:inline;">
+              {% csrf_token %}
+              <button type="submit" class="nav-link btn btn-outline-light ms-2" style="border:none; background:none; padding:0; cursor:pointer;">
+                Logout,{{ user.username|title }}
+              </button>
+            </form>
+          </li>
+        {% else %}
+          <li class="nav-item">
+            <a class="nav-link btn btn-outline-light ms-2" href="{% url 'login' %}">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link btn btn-outline-light ms-2" href="{% url 'user_create' %}">Sign up</a>
+          </li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</nav>

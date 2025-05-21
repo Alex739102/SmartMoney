@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Ștergere Tranzacție{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4 text-danger">Ești sigur că vrei să ștergi această tranzacție?</h2>
+
+    <div class="card mb-3">
+        <div class="card-body">
+            <p><strong>Sumă:</strong> {{ object.amount }}</p>
+            <p><strong>Data:</strong> {{ object.date }}</p>
+            <p><strong>Descriere:</strong> {{ object.description }}</p>
+            <p><strong>Categorie:</strong> {{ object.category }}</p>
+        </div>
+    </div>
+
+    <form method="post">
+        {% csrf_token %}
+        <a href="{% url 'transaction_list' %}" class="btn btn-secondary">Anulează</a>
+        <button type="submit" class="btn btn-danger">Șterge</button>
+    </form>
+</div>
+{% endblock %}
