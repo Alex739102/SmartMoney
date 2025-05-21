@@ -1,33 +1,41 @@
 {% extends 'base.html' %}
 
-{% block title %}Lista Categoriilor{% endblock %}
+{% block title %}Category List{% endblock %}
 
 {% block content %}
   <div class="container">
-    <h2 class="mb-4">Categorii existente</h2>
+    <h2 class="mb-4" style="color: white;">Existing Categories</h2>
 
-    <a href="{% url 'category_create' %}" class="btn btn-primary mb-3">Adaugă categorie nouă</a>
+    <a href="{% url 'category_create' %}" class="btn btn-primary mb-3">Add a new category</a>
 
-    <ul class="list-group">
-      {% for cat in categories %}
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-          <div>
-            {{ cat.name }}
-            <span class="badge
-              {% if cat.is_income %}
-                bg-success
-              {% else %}
-                bg-danger
-              {% endif %}
-            ">
-              {{ cat.get_is_income_display }}
-            </span>
-          </div>
-          <a href="{% url 'category_delete' cat.pk %}" class="btn btn-sm btn-outline-danger">Șterge</a>
-        </li>
-      {% empty %}
-        <li class="list-group-item">Nu există categorii înregistrate.</li>
-      {% endfor %}
-    </ul>
+   <ul class="list-group">
+  {% for cat in categories %}
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      <div>
+        {{ cat.name }}
+        -
+        <span>
+          {{ cat.get_is_income_display }}
+        </span>
+        <span class="badge
+          {% if cat.is_income %}
+            bg-success
+          {% else %}
+            bg-danger
+          {% endif %}
+        ">
+          {% if cat.is_income %}
+            Income
+          {% else %}
+            Expense
+          {% endif %}
+        </span>
+      </div>
+      <a href="{% url 'category_delete' cat.pk %}" class="btn btn-sm btn-outline-danger">Delete</a>
+    </li>
+  {% empty %}
+    <li class="list-group-item">No existing categories.</li>
+  {% endfor %}
+</ul>
   </div>
 {% endblock %}

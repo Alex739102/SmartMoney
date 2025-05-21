@@ -1,7 +1,9 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %} {% endblock %}</title>
@@ -10,9 +12,9 @@
 </head>
 <body> <style>
         body {
-            background: linear-gradient(45deg, #000000, #808080) !important; /* Gradient pe diagonala de la negru la gri închis */
-            color: black; /* Text negru pentru contrast pe fundalul mai luminos */
-            min-height: 100vh; /* Asigură-te că ocupă întreaga înălțime a paginii */
+            background: linear-gradient(45deg, #000000, #808080) !important;
+            color: black;
+            min-height: 100vh;
             margin: 0;
         }
     </style>
@@ -20,8 +22,8 @@
 {% if user.is_authenticated %}
     <div class="container my-3">
         <div class="alert alert-light border rounded shadow-sm">
-            <p class="mb-1"> Sold total: <strong>{{ total_balance }} RON</strong></p>
-            <p class="mb-0"> Data curentă: {{ today }}</p>
+            <p class="mb-1"> Total Budget: <strong>{{ total_balance }} RON</strong></p>
+            <p class="mb-0"> Current Date: {{ today }}</p>
         </div>
     </div>
     {% endif %}

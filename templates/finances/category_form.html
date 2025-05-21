@@ -1,36 +1,44 @@
 {% extends 'base.html' %}
 
-{% block title %}Adaugă Categorie{% endblock %}
+
+{% block title %}Add Category{% endblock %}
 
 {% block content %}
   <div class="row">
     <div class="col-md-6">
-      <h2 class="mb-4">{{ page_title }}</h2>
+     <h2 class="mb-4 text-center" style="color: white;">{{ page_title }}</h2>
       <form method="post" class="card p-4 shadow-sm border-0">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit" class="btn btn-success">Salvează</button>
+        <button type="submit" class="btn btn-success">Save</button>
       </form>
     </div>
 
     <div class="col-md-6">
-      <h4 class="mb-3">Categorii existente</h4>
+      <h4 class="mb-3" style="color: white">Existing categories</h4>
       <ul class="list-group">
         {% for cat in categories %}
           <li class="list-group-item d-flex justify-content-between align-items-center">
-            {{ cat.name }}
-            <span class="badge
-              {% if cat.is_income  %}
-                bg-success
-              {% else %}
-                bg-danger
-              {% endif %}
-            ">
-              {{ cat.get_is_income_display }}
-            </span>
+            <div>
+              {{ cat.name }} -
+              <span>{{ cat.get_is_income_display }}</span>
+              <span class="badge
+                {% if cat.is_income  %}
+                  bg-success
+                {% else %}
+                  bg-danger
+                {% endif %}
+              ">
+                {% if cat.is_income %}
+                  Income
+                {% else %}
+                  Expense
+                {% endif %}
+              </span>
+            </div>
           </li>
         {% empty %}
-          <li class="list-group-item">Nicio categorie încă.</li>
+          <li class="list-group-item">No existing categories.</li>
         {% endfor %}
       </ul>
     </div>

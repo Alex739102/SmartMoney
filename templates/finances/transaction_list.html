@@ -1,18 +1,18 @@
 {% extends 'base.html' %}
 
-{% block title %}Lista Tranzacțiilor{% endblock %}
+{% block title %}Transaction List{% endblock %}
 
 {% block content %}
   <div class="container">
-    <h2 class="mb-4">Tranzacții existente</h2>
+    <h2 class="mb-4" style="color: white;">Transaction List</h2>
 
-    <a href="{% url 'transaction_create' %}" class="btn btn-primary mb-3">Adaugă tranzacție nouă</a>
+    <a href="{% url 'transaction_create' %}" class="btn btn-primary mb-3">Add a new transaction</a>
 
     <ul class="list-group">
       {% for txn in transactions %}
         <li class="list-group-item d-flex justify-content-between align-items-center">
           <div>
-            <strong>{{ txn.amount }} RON</strong> - {{ txn.category.name }} - {{ txn.date }}
+            <strong>{{ txn.amount }} USD</strong> - {{ txn.category.name }} - {{ txn.date }}
             {% if txn.description %}
               <br><small class="text-muted">{{ txn.description }}</small>
             {% endif %}
@@ -20,18 +20,18 @@
 
           <div class="dropend">
             <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton{{ txn.pk }}" data-bs-toggle="dropdown" aria-expanded="false">
-              Acțiuni
+              Actions
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton{{ txn.pk }}">
-              <li><a class="dropdown-item" href="{% url 'transaction_detail' txn.pk %}">Detalii</a></li>
-              <li><a class="dropdown-item" href="{% url 'transaction_update' txn.pk %}">Editează</a></li>
+              <li><a class="dropdown-item" href="{% url 'transaction_detail' txn.pk %}">Details</a></li>
+              <li><a class="dropdown-item" href="{% url 'transaction_update' txn.pk %}">Edit</a></li>
               <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item text-danger" href="{% url 'transaction_delete' txn.pk %}">Șterge</a></li>
+              <li><a class="dropdown-item text-danger" href="{% url 'transaction_delete' txn.pk %}">Delete</a></li>
             </ul>
           </div>
         </li>
       {% empty %}
-        <li class="list-group-item">Nu există tranzacții înregistrate.</li>
+        <li class="list-group-item">No existing transactions.</li>
       {% endfor %}
     </ul>
   </div>

@@ -11,7 +11,7 @@
       {% if user.is_authenticated %}
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{% url 'dashboard' %}">Dashboard</a>
+            <a class="nav-link " aria-current="page" href="{% url 'dashboard' %}">Dashboard</a>
           </li>
 
           <li class="nav-item dropdown">
@@ -33,11 +33,10 @@
               <li><a class="dropdown-item" href="{% url 'transaction_create' %}">Add Transaction</a></li>
             </ul>
           </li>
+            <li class="nav-item">
+    <a class="nav-link btn btn-outline-light ms-2" href="#">Investing</a>
+  </li>
         </ul>
-      {% else %}
-        <span class="navbar-text text-white me-auto">
-          Te rugăm să te conectezi pentru a accesa funcționalitățile aplicației.
-        </span>
       {% endif %}
 
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">

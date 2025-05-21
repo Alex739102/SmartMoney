@@ -19,7 +19,7 @@ class CategoryCreateView(LoginRequiredMixin, CreateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['categories'] = Category.objects.all()
-        context['page_title'] = 'Adaugă o categorie nouă'
+        context['page_title'] = 'Add a new category'
         return context
 
 

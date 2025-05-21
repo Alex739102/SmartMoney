@@ -9,14 +9,21 @@ class CategoryForm(forms.ModelForm):
     class Meta:
         model = Category
         fields = ['name', 'is_income']
-        widgets = {'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Introdu numele categoriei'})},
+        widgets = {
+            'name': forms.TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Insert category name'
+            }),
+            'is_income': forms.CheckboxInput(attrs={
+                'class': 'form-check-input',}),
+        }
 
     def clean_name(self):
         name = self.cleaned_data.get('name')
         if len(name.strip()) < 3:
-            raise forms.ValidationError("Numele categoriei trebuie să aibă cel puțin 3 caractere.")
+            raise forms.ValidationError("The name should be at least 3 characters long.")
         if name.isdigit():
-            raise forms.ValidationError("Numele categoriei nu poate conține doar cifre.")
+            raise forms.ValidationError("The category name should only contain numbers.")
         return name
 
 class TransactionForm(forms.ModelForm):
@@ -24,7 +31,20 @@ class TransactionForm(forms.ModelForm):
         model = Transaction
         fields = ['category', 'amount', 'date', 'description']
         widgets = {
-            'date': forms.DateInput(attrs={'type': 'date'}),
+            'category': forms.Select(attrs={'class': 'form-select'}),
+            'amount': forms.NumberInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Insert transaction amount'
+            }),
+            'date': forms.DateInput(attrs={
+                'type': 'date',
+                'class': 'form-control'
+            }),
+            'description': forms.Textarea(attrs={
+                'class': 'form-control',
+                'placeholder': 'Descrption(Optional)',
+                'rows': 3,
+            }),
         }
 
     def clean(self):
@@ -34,11 +54,11 @@ class TransactionForm(forms.ModelForm):
 
 
         if amount is not None and amount <= 0:
-            self.add_error('amount', 'Suma trebuie să fie un număr pozitiv.')
+            self.add_error('amount', 'The amount should be greater than zero.')
 
 
         if date is not None and date > timezone.now().date():
-            self.add_error('date', 'Data nu poate fi în viitor.')
+            self.add_error('date', 'Date should not be in the future.')
 
         return cleaned_data
 
