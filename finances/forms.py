@@ -25,7 +25,7 @@ class CategoryForm(forms.ModelForm):
         if len(name.strip()) < 3:
             raise forms.ValidationError("The name should be at least 3 characters long.")
         if name.isdigit():
-            raise forms.ValidationError("The category name should only contain numbers.")
+            raise forms.ValidationError("The category name should not only contain numbers.")
         return name
 
 class TransactionForm(forms.ModelForm):
