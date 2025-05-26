@@ -15,7 +15,9 @@ class CategoryForm(forms.ModelForm):
                 'placeholder': 'Insert category name'
             }),
             'is_income': forms.CheckboxInput(attrs={
-                'class': 'form-check-input',}),
+                'class': 'form-check-input',
+                'style': 'outline: 1px solid #000; outline-offset: 1px;',
+                }),
         }
 
     def clean_name(self):

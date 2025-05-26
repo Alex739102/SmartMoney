@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 style="text-align:center;color: white">Investing-Guide</h1>
+
+
+<h2 style="text-align:center; color:white">Investing Basic Info</h2>
+<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; padding: 20px;">
+    {% for card in investing_cards %}
+        <div style="width: 300px; perspective: 1000px;">
+            <div style="position: relative; width: 100%; height: 200px; text-align: center; transition: transform 0.6s; transform-style: preserve-3d;"
+                 onmouseover="this.style.transform='rotateY(180deg)'"
+                 onmouseout="this.style.transform='rotateY(0deg)'">
+
+                <div style="position: absolute; width: 100%; height: 100%; backface-visibility: hidden; background: #f0f0f0; display: flex; align-items: center; justify-content: center; padding: 10px; border-radius: 10px;">
+                    <strong>{{ card.question }}</strong>
+                </div>
+
+                <div style="position: absolute; width: 100%; height: 100%; backface-visibility: hidden; background: #d9fdd3; color: black; transform: rotateY(180deg); display: flex; align-items: center; justify-content: center; padding: 10px; border-radius: 10px;">
+                    {{ card.answer }}
+                </div>
+            </div>
+        </div>
+    {% empty %}
+        <p>No investing flashcards yet.</p>
+    {% endfor %}
+</div>
+
+
+<h2 style="text-align:center;color:white;">Trading Basic Info</h2>
+<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; padding: 20px;">
+    {% for card in trading_cards %}
+        <div style="width: 300px; perspective: 1000px;">
+            <div style="position: relative; width: 100%; height: 200px; text-align: center; transition: transform 0.6s; transform-style: preserve-3d;"
+                 onmouseover="this.style.transform='rotateY(180deg)'"
+                 onmouseout="this.style.transform='rotateY(0deg)'">
+
+                <div style="position: absolute; width: 100%; height: 100%; backface-visibility: hidden; background: #f0f0f0; display: flex; align-items: center; justify-content: center; padding: 10px; border-radius: 10px;">
+                    <strong>{{ card.question }}</strong>
+                </div>
+
+                <div style="position: absolute; width: 100%; height: 100%; backface-visibility: hidden; background: #d3e5ff; color: black; transform: rotateY(180deg); display: flex; align-items: center; justify-content: center; padding: 10px; border-radius: 10px;">
+                    {{ card.answer }}
+                </div>
+            </div>
+        </div>
+    {% empty %}
+        <p>No trading flashcards yet.</p>
+    {% endfor %}
+</div>
+{% endblock %}
