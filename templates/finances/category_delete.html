@@ -1,33 +1,33 @@
 {% extends 'base.html' %}
 
-{% block title %}Șterge Categoria: {{ category.name }}{% endblock %}
+{% block title %}Delete Category: {{ category.name }}{% endblock %}
 
 {% block content %}
 <div class="container d-flex justify-content-center align-items-center min-vh-100">
     <div class="card shadow border-0 rounded-4 p-4 animate__animated animate__fadeIn" style="max-width: 700px; width: 100%;">
         <div class="text-center mb-4">
             <i class="fas fa-folder-minus fa-3x text-danger mb-2"></i>
-            <h2 class="fw-bold">Șterge Categoria</h2>
-            <p class="text-muted">Confirmi ștergerea acestei categorii?</p>
+            <h2 class="fw-bold">Delete Category</h2>
+            <p class="text-muted">Do you confirm?</p>
         </div>
 
         <div class="bg-light rounded-3 p-3 mb-4">
-            <p class="mb-2"><strong>Nume:</strong> {{ category.name }}</p>
-            <p class="mb-0"><strong>Tip:</strong> {% if category.is_income %}Venit{% else %}Cheltuială{% endif %}</p>
+            <p class="mb-2"><strong>Name:</strong> {{ category.name }}</p>
+            <p class="mb-0"><strong>Type:</strong> {% if category.is_income %}Venit{% else %}Cheltuială{% endif %}</p>
         </div>
 
         <div class="alert alert-warning text-center rounded-3" role="alert">
             <i class="fas fa-exclamation-triangle me-2"></i>
-            Ești sigur că vrei să ștergi această categorie? Această acțiune nu poate fi anulată.
+            Are you sure you want to delete this category.This action cannot be undone!
         </div>
 
         <form method="POST" class="text-center mt-4">
             {% csrf_token %}
             <button type="submit" class="btn btn-danger px-4 me-2">
-                <i class="fas fa-trash-alt me-1"></i> Da, Șterge
+                <i class="fas fa-trash-alt me-1"></i> Yes,delete!
             </button>
             <a href="{% url 'category_list' %}" class="btn btn-outline-secondary px-4">
-                Anulează
+                Cancel
             </a>
         </form>
     </div>

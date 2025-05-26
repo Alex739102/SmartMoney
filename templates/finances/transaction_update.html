@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 
-{% block title %}Editează Tranzacția{% endblock %}
+{% block title %}Edit Transaction{% endblock %}
 
 {% block content %}
 <div class="container mt-5" style="max-width: 600px;">
-    <h2 class="mb-4 text-center">Editează Tranzacția</h2>
+    <h2 class="mb-4 text-center">Edit Transaction</h2>
 
     <form method="post" novalidate>
         {% csrf_token %}
@@ -18,7 +18,7 @@
                 {% endif %}
             </div>
         {% endfor %}
-        <button type="submit" class="btn btn-primary w-100">Salvează modificările</button>
+        <button type="submit" class="btn btn-primary w-100">Save changes</button>
     </form>
 </div>
 {% endblock %}
